@@ -15,8 +15,7 @@ bot = telebot.TeleBot(TOKEN)
 @bot.message_handler(commands=["start", "help"])
 def show_help(message: telebot.types.Message) -> None:
     """Show information and required input format"""
-    answer = "Введите начальную валюту, валюту для перl,kl,;okopkookikkokooo90p-][" \
-             "\евода и количество первой валюты,\n" \
+    answer = "Введите начальную валюту, валюту для перевода и количество первой валюты,\n" \
              "например: 'доллар рубль 100' - перевести 100 долларов в рубли.\n" \
              "Для информации введите /help или /start, чтобы посмотреть доступные \n" \
              "валюты введите /values"
@@ -48,7 +47,8 @@ def convert(message: telebot.types.Message) -> None:
         bot.reply_to(message, f"Не удалось выполнить команду\n{error}")
     else:
         quantity = round(float(rate) * float(amount), 2)
-        answer = f"{amount} {quote.print_quantity(amount)} = {quantity} {base.print_quantity(quantity)}"
+        answer = f"{amount} {quote.print_for_quantity(amount)} = " \
+                 f"{quantity} {base.print_for_quantity(quantity)}"
         bot.reply_to(message, answer)
 
 

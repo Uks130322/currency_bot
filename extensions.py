@@ -26,7 +26,7 @@ class Currency:
         else:
             raise UserException(f"Не удалось обработать валюту {name}")
 
-    def print_quantity(self, quantity: float) -> str:
+    def print_for_quantity(self, quantity: float) -> str:
         """Return suitable case of currency according to quantity"""
         num = int(quantity)
         if self.name == "евро":
@@ -72,12 +72,14 @@ class CurrencyConversion:
 
         try:
             amount = float(amount)
+            int(amount)
         except ValueError:
             raise UserException(f"Не удалось обработать количество {amount}")
 
         if quote.name == base.name:
             raise UserException(f"Одинаковые валюты.\n"
-                                f"{amount} {quote.print_quantity(amount)} = {amount} {base.print_quantity(amount)}")
+                                f"{amount} {quote.print_for_quantity(amount)} = "
+                                f"{amount} {base.print_for_quantity(amount)}")
 
         return quote, base, amount
 
