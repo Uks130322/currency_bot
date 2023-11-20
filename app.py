@@ -48,7 +48,7 @@ def convert(message: telebot.types.Message) -> None:
         bot.reply_to(message, f"Не удалось выполнить команду\n{error}")
     else:
         quantity = round(float(rate) * float(amount), 2)
-        answer = f"{amount} {quote.print_quantity(amount)} = {quantity} {base.print_quantity(amount)}"
+        answer = f"{amount} {quote.print_quantity(amount)} = {quantity} {base.print_quantity(quantity)}"
         bot.reply_to(message, answer)
 
 
